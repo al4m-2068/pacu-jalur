@@ -1,6 +1,6 @@
 let lastPoint = 0;
 let hidePoint = 20;
-let navBar = document.querySelector("header > h1");
+let navBar = document.querySelector("header > div > h1");
 document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger);
   // header animation

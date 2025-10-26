@@ -6,7 +6,6 @@
   :root, :host {
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-amber-100: oklch(96.2% 0.059 95.617);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -188,6 +187,9 @@
   .relative {
     position: relative;
   }
+  .sticky {
+    position: sticky;
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -208,6 +210,12 @@
   }
   .z-\[999\] {
     z-index: 999;
+  }
+  .m-auto {
+    margin: auto;
+  }
+  .mx-auto {
+    margin-inline: auto;
   }
   .-mt-\[100vh\] {
     margin-top: calc(100vh * -1);
@@ -242,6 +250,12 @@
   .inline-block {
     display: inline-block;
   }
+  .table {
+    display: table;
+  }
+  .h-1 {
+    height: calc(var(--spacing) * 1);
+  }
   .h-1\/2 {
     height: calc(1/2 * 100%);
   }
@@ -253,6 +267,9 @@
   }
   .h-screen {
     height: 100vh;
+  }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -266,12 +283,27 @@
   .max-w-\[400px\] {
     max-width: 400px;
   }
+  .max-w-\[1440\] {
+    max-width: 1440;
+  }
+  .max-w-\[1440px\] {
+    max-width: 1440px;
+  }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
   .shrink-0 {
     flex-shrink: 0;
+  }
+  .border-collapse {
+    border-collapse: collapse;
   }
   .translate-x-28 {
     --tw-translate-x: calc(var(--spacing) * 28);
     translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .resize {
+    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -290,6 +322,9 @@
   }
   .gap-5 {
     gap: calc(var(--spacing) * 5);
+  }
+  .gap-7 {
+    gap: calc(var(--spacing) * 7);
   }
   .gap-7\.5 {
     gap: calc(var(--spacing) * 7.5);
@@ -328,6 +363,9 @@
   .border-white {
     border-color: var(--color-white);
   }
+  .bg-black {
+    background-color: var(--color-black);
+  }
   .bg-black\/50 {
     background-color: color-mix(in srgb, #000 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -337,11 +375,17 @@
   .bg-olur {
     background-color: var(--color-olur);
   }
-  .bg-white {
-    background-color: var(--color-white);
+  .bg-olur\/30 {
+    background-color: color-mix(in srgb, #fb6b3d 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-olur) 30%, transparent);
+    }
   }
   .bg-\[url\(\'\/src\/img\/pacuperson\.png\'\)\] {
     background-image: url('/src/img/pacuperson.png');
+  }
+  .bg-\[url\(\)\] {
+    background-image: url();
   }
   .bg-cover {
     background-size: cover;
@@ -364,6 +408,9 @@
   .px-28 {
     padding-inline: calc(var(--spacing) * 28);
   }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
   .py-3\.5 {
     padding-block: calc(var(--spacing) * 3.5);
   }
@@ -378,6 +425,9 @@
   }
   .pt-28 {
     padding-top: calc(var(--spacing) * 28);
+  }
+  .pb-6 {
+    padding-bottom: calc(var(--spacing) * 6);
   }
   .pb-6\.5 {
     padding-bottom: calc(var(--spacing) * 6.5);
@@ -492,6 +542,13 @@
   .uppercase {
     text-transform: uppercase;
   }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
   .lg\:px-20 {
     @media (width >= 64rem) {
       padding-inline: calc(var(--spacing) * 20);
@@ -583,6 +640,11 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -593,6 +655,7 @@
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
+      --tw-outline-style: solid;
     }
   }
 }

@@ -4,7 +4,8 @@ let navBar = document.querySelector("header > div > h1");
 document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger);
   // header animation
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth > 1280) {
+    const sections = gsap.utils.toArray("#pages-ctr section");
     window.addEventListener("scroll", () => {
       const crtScroll = window.scrollY;
       if (crtScroll <= hidePoint) {
@@ -21,39 +22,42 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
       lastPoint = crtScroll;
     });
-
     // Arti Nama
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "#pacujalur",
+        trigger: "#all-ctr",
         pin: true,
         start: "top top",
-        end: "+=400%",
+        end: "+=300%",
         scrub: true,
         markers: true, //debug mode
       },
     });
-    tl.from("#pacujalur > h1", {
-      opacity: 0,
-      duration: 3,
+    let jalur = document.getElementById("jalur");
+    tl.to("#pages-ctr", {
+      y: "-100vh",
+      duration: 5,
     })
+      .from("#pacujalur > h1", {
+        opacity: 0,
+      })
       .from(
         "#pacu > div > h2, #pacu > div > p",
         {
           opacity: 0,
-          stagger: 0.2,
-          duration: 2,
+          stagger: 1,
+          duration: 3,
         },
-        "+=1.5"
+        "+=0.5"
       )
       .to(
         "#jalur",
         {
-          y: "-100vh", // Geser elemen #jalur ke atas
+          y: `-${jalur.offsetHeight}px`, // Geser elemen #jalur ke atas
           ease: "power1.out",
           duration: 3,
         },
-        "+=2"
+        "+=4"
       )
       .from(
         "#jalur > div > h2, #jalur > div > p",
@@ -62,7 +66,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
           stagger: 0.5,
           duration: 2,
         },
-        "+=1.5"
-      );
+        "+=0.5"
+      )
+      .to("#bagian-jalur", {
+        y: "-100vh",
+        duration: 5,
+      })
+      .to("#badan", {
+        y: `-${document.getElementById("badan").offsetHeight}px`,
+        duration: 5,
+      });
   }
 });

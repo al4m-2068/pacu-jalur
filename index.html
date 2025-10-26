@@ -11,29 +11,29 @@
   <body
     class="bg-olur/30 text-white overflow-x-hidden flex flex-col items-center"
   >
-    <div class="max-w-[1440px]">
-      <header class="z-[999] flex justify-center w-full fixed top-0 left-0">
-        <div
-          class="flex w-full max-w-[1440px] lg:px-20 xl:px-28 justify-between items-end"
-        >
-          <h1 class="font-semibold shrink-0 uppercase lg:text-xl xl:text-3xl">
-            Get to Know
-          </h1>
-          <nav>
-            <ul
-              class="flex pt-10 pb-6.5 px-9 bg-olur rounded-b-3xl justify-center items-center uppercase gap-7.5 text-sm font-semibold tracking-wide"
-            >
-              <li><a href="">Meaning</a></li>
-              <li><a href="">Jalur Parts</a></li>
-              <li><a href="">Rules and Rundown</a></li>
-              <li><a href="">More Reference</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+    <header class="z-[999] flex justify-center w-full fixed top-0 left-0">
+      <div
+        class="flex w-full max-w-[1440px] lg:px-20 xl:px-28 justify-between items-end"
+      >
+        <h1 class="font-semibold shrink-0 uppercase lg:text-xl xl:text-3xl">
+          Get to Know
+        </h1>
+        <nav>
+          <ul
+            class="flex pt-10 pb-6.5 px-9 bg-olur rounded-b-3xl justify-center items-center uppercase gap-7.5 text-sm font-semibold tracking-wide"
+          >
+            <li><a href="">Meaning</a></li>
+            <li><a href="">Jalur Parts</a></li>
+            <li><a href="">Rules and Rundown</a></li>
+            <li><a href="">More Reference</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div id="all-ctr" class="max-w-[1440px] bg-[beige] relative z-20">
       <section
         id="home"
-        class="bg-[url('/src/img/pacuperson.png')] relative bg-cover bg-center w-full h-screen"
+        class="bg-[url('/src/img/pacuperson.png')] relative z-1 bg-cover bg-center w-full h-screen"
       >
         <!-- absoluteds -->
         <div class="bg-black/50 absolute top-0 left-0 h-full w-full z-2"></div>
@@ -67,145 +67,146 @@
           >
         </div>
       </section>
-      <section id="pacujalur">
-        <h1
-          class="text-3xl font-bold text-white/70 uppercase absolute py-3.5 top-5 left-28 tracking-widest"
-        >
-          Meaning
-        </h1>
-        <div id="pacu" class="h-screen w-full flex justify-between bg-olur">
-          <div class="h-full w-full flex flex-col justify-center pl-28">
-            <h1 class="text-trim text-[10rem] font-bold mb-10">Pacu</h1>
-            <h2 class="text-3xl font-semibold mb-2 text-white/90">
-              Competition; Race.
-            </h2>
-            <p class="font-medium text-white/50 max-w-[400px] text-xl">
-              From the verb to accelerate: to speed up or make run fast/quickly.
-            </p>
-          </div>
-          <img
-            src="src/img/sarti-pacu.jpg"
-            alt=""
-            class="w-1/2 h-full object-cover object-center"
-          />
-        </div>
-        <div id="jalur" class="h-screen w-full flex items-end">
-          <div class="jalur-ctr w-1/2 h-1/2 bg-olur flex flex-col pl-28">
-            <h1 class="text-trim text-[10rem] font-bold mb-10">Jalur</h1>
-            <h2 class="text-3xl font-semibold mb-2 text-white/90">
-              Longboat; Sampan.
-            </h2>
-            <p class="font-medium text-white/50 max-w-[400px] text-xl">
-              A local term in Kuantan Singingi for a large boat made from a
-              single, solid log.
-            </p>
-          </div>
-          <img
-            src="src/img/sarti-jalur.png"
-            alt=""
-            class="w-1/2 h-1/2 object-cover object-center"
-          />
-        </div>
-      </section>
-      <section
-        id="bagian-jalur"
-        class="h-screen w-full flex flex-col -mt-[100vh] relative"
-      >
-        <h1
-          class="text-3xl font-bold text-olur/70 uppercase absolute py-3.5 top-5 left-28 tracking-widest"
-        >
-          Jalur Parts
-        </h1>
-        <div id="kepala" class="h-full w-full flex text-black">
-          <div
-            class="w-full overflow-hidden h-full flex flex-col justify-between bg-"
+      <div id="pages-ctr" class="relative z-2">
+        <section id="pacujalur" class="h-screen overflow-hidden">
+          <h1
+            class="text-3xl font-bold text-white/70 uppercase absolute py-3.5 top-5 left-28 tracking-widest"
           >
-            <div class="flex flex-col w-full px-28 pt-28 gap-5">
-              <div>
-                <h1 class="text-trim text-[4rem] font-semibold mb-5">Haluan</h1>
-                <h2 class="text-4xl font-semibold text-olur">
-                  The boat's head
-                </h2>
-              </div>
-              <p>
-                The foremost tip of the boat, which serves as a post for the '<b
-                  >Tukang Tari</b
-                >' (the dancer/cue-giver), functions as a
-                <b>water-splitter</b> (like common boats do).
+            Meaning
+          </h1>
+          <div id="pacu" class="h-screen w-full flex justify-between bg-olur">
+            <div class="h-full w-full flex flex-col justify-center pl-28">
+              <h1 class="text-trim text-[10rem] font-bold mb-10">Pacu</h1>
+              <h2 class="text-3xl font-semibold mb-2 text-white/90">
+                Competition; Race.
+              </h2>
+              <p class="font-medium text-white/50 max-w-[400px] text-xl">
+                From the verb to accelerate: to speed up or make run
+                fast/quickly.
               </p>
             </div>
-            <div
-              class="w-full h-[400px] flex mb-14 border-y border-solid border-olur py-10"
-            >
-              <div
-                id="parts-ctr"
-                class="relative h-full gap-8 flex px-28 items-center"
-              >
-                <div class="flex h-full items-center absolute top-0">
-                  <h1
-                    class="font-bold text-[5rem] text-olur/60 leading-19 shrink-0"
-                  >
-                    Roles in<br />this part
+            <img
+              src="src/img/sarti-pacu.jpg"
+              alt=""
+              class="w-1/2 h-full object-cover object-center"
+            />
+          </div>
+          <div id="jalur" class="h-1/2 w-full flex items-end">
+            <div class="jalur-ctr w-1/2 h-full bg-olur flex flex-col pl-28">
+              <h1 class="text-trim text-[10rem] font-bold mb-10">Jalur</h1>
+              <h2 class="text-3xl font-semibold mb-2 text-white/90">
+                Longboat; Sampan.
+              </h2>
+              <p class="font-medium text-white/50 max-w-[400px] text-xl">
+                A local term in Kuantan Singingi for a large boat made from a
+                single, solid log.
+              </p>
+            </div>
+            <img
+              src="src/img/sarti-jalur.png"
+              alt=""
+              class="w-1/2 h-full object-cover object-center"
+            />
+          </div>
+        </section>
+        <!-- BAGIAN JALUR -->
+        <section id="bagian-jalur" class="w-full flex flex-col bg-[beige]">
+          <h1
+            class="text-3xl font-bold text-olur/70 uppercase absolute py-3.5 top-5 left-28 tracking-widest"
+          >
+            Jalur Parts
+          </h1>
+          <div id="kepala" class="h-screen w-full flex text-black">
+            <div class="w-1/2 h-full flex flex-col justify-between">
+              <div class="flex flex-col w-full px-28 pt-28 gap-5">
+                <div>
+                  <h1 class="text-trim text-[4rem] font-semibold mb-5">
+                    Haluan
                   </h1>
+                  <h2 class="text-4xl font-semibold text-olur">
+                    The boat's head
+                  </h2>
                 </div>
-                <div class="parts-card ml-120 bg-[url()]"></div>
+                <p>
+                  The foremost tip of the boat, which serves as a post for the
+                  '<b>Tukang Tari</b>' (the dancer/cue-giver), functions as a
+                  <b>water-splitter</b> (like common boats do).
+                </p>
+              </div>
+              <div
+                class="w-full h-[400px] flex mb-14 border-y border-solid border-olur py-10"
+              >
+                <div
+                  id="parts-ctr"
+                  class="relative h-full gap-8 flex px-28 items-center"
+                >
+                  <div class="flex h-full items-center absolute top-0">
+                    <h1
+                      class="font-bold text-[5rem] text-olur/60 leading-19 shrink-0"
+                    >
+                      Roles in<br />this part
+                    </h1>
+                  </div>
+                  <div class="parts-card ml-120 bg-[url()]"></div>
+                </div>
               </div>
             </div>
+            <div class="w-full h-full">
+              <img
+                src="src/img/jalur-kuping.jpg"
+                alt=""
+                class="w-full h-full"
+              />
+            </div>
           </div>
-          <div class="w-full h-full">
-            <img src="src/img/jalur-kuping.jpg" alt="" class="w-full h-full" />
+          <div
+            id="badan"
+            class="h-[86vh] w-full flex items-end text-black bg-[beige]"
+          >
+            <div class="w-1/2 h-full flex flex-col justify-between bg-">
+              <div class="flex flex-col w-full px-28 gap-5">
+                <div>
+                  <h1 class="text-trim text-[4rem] font-semibold mb-5">
+                    Badan
+                  </h1>
+                  <h2 class="text-4xl font-semibold text-olur">Jalur's body</h2>
+                </div>
+                <p>
+                  Tubuh utama perahu yang menjadi tempat kekuatan pendorong
+                  dihasilkan. Dibuat dari satu batang pohon utuh, tanpa
+                  sambungan (panjangnya bisa mencapai 25–35 meter). Itu yang
+                  menjadi keunikan sampan Jalur.
+                </p>
+              </div>
+              <div
+                class="w-full h-[400px] flex mb-14 border-y border-solid border-olur py-10"
+              >
+                <div
+                  id="parts-ctr"
+                  class="relative h-full gap-8 flex px-28 items-center"
+                >
+                  <div class="flex h-full items-center absolute top-0">
+                    <h1
+                      class="font-bold text-[5rem] text-olur/60 leading-19 shrink-0"
+                    >
+                      Roles in<br />this part
+                    </h1>
+                  </div>
+                  <div class="parts-card ml-120 bg-[url()]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full h-full">
+              <img
+                src="src/img/jalur-kuping.jpg"
+                alt=""
+                class="w-full h-full"
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
-
-    <!-- <blockquote
-      class="tiktok-embed"
-      cite="https://www.tiktok.com/@cecepjiaa/video/7533604814836534534"
-      data-video-id="7533604814836534534"
-      style="max-width: 605px; min-width: 325px"
-    >
-      <section>
-        <a
-          target="_blank"
-          title="@cecepjiaa"
-          href="https://www.tiktok.com/@cecepjiaa?refer=embed"
-          >@cecepjiaa</a
-        >
-        Latihan bersama jalur,Panglimo sati &#38; Linta jalang.
-        <a
-          title="pacujalur"
-          target="_blank"
-          href="https://www.tiktok.com/tag/pacujalur?refer=embed"
-          >#pacujalur</a
-        >
-        <a
-          title="budaya"
-          target="_blank"
-          href="https://www.tiktok.com/tag/budaya?refer=embed"
-          >#budaya</a
-        >
-        <a
-          title="budayaindonesia"
-          target="_blank"
-          href="https://www.tiktok.com/tag/budayaindonesia?refer=embed"
-          >#budayaindonesia</a
-        >
-        <a
-          title="fyp"
-          target="_blank"
-          href="https://www.tiktok.com/tag/fyp?refer=embed"
-          >#fyp</a
-        >
-        <a
-          target="_blank"
-          title="♬ Pacu Jalur 2023 - micko cello &#38; Limuno &#38; Frisca Trya"
-          href="https://www.tiktok.com/music/Pacu-Jalur-2023-7265164667511818242?refer=embed"
-          >♬ Pacu Jalur 2023 - micko cello &#38; Limuno &#38; Frisca Trya</a
-        >
-      </section>
-    </blockquote> -->
-    <script async src="https://www.tiktok.com/embed.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="src/js/script.js"></script>

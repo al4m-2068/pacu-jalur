@@ -4,6 +4,7 @@
 @theme {
   --default-font-family: "DM Sans", sans-serif;
   --color-olur: #fb6b3d;
+  --color-brolur: #32150c;
 }
 
 @layer utilities {
@@ -15,13 +16,21 @@
 .text-trim {
   text-box: trim-both cap alphabetic;
 }
+
+.parts-titles {
+  @apply relative max-sm:order-2 max-sm:w-full w-1/2 max-sm:h-max h-full flex flex-col justify-between max-sm:gap-8 bg-[beige];
+}
+
 .parts-card {
   @apply flex flex-col justify-end w-full h-full px-7 py-6 bg-black/50;
 }
 .parts-c-base {
-  @apply w-[400px] h-[300px] rounded-3xl bg-cover overflow-hidden;
+  @apply w-[400px] max-sm:w-[350px] h-[300px] rounded-3xl bg-cover overflow-hidden;
 }
 
 .run-cards {
   @apply mt-[15vw] bg-olur h-100 w-full px-28 flex;
+}
+.ref-video {
+  @apply w-[300px] h-full object-cover rounded-3xl;
 }

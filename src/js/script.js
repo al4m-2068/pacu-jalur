@@ -10,12 +10,136 @@ const lenis = new Lenis({
   infinite: false,
 });
 
+// From the GSAP Forum
+
+function getScrollPosition(animation, progress) {
+  let p = gsap.utils.clamp(0, 1, progress || 0),
+    nested = !animation.scrollTrigger,
+    st = nested ? animation.parent.scrollTrigger : animation.scrollTrigger,
+    containerAnimation = st.vars.containerAnimation,
+    range = st.end - st.start,
+    position = st.start + range * p;
+  if (containerAnimation) {
+    st = containerAnimation.scrollTrigger;
+    return (
+      st.start +
+      (st.end - st.start) * (position / containerAnimation.duration())
+    );
+  } else if (nested) {
+    let start =
+        st.start +
+        (animation.startTime() / animation.parent.duration()) * range,
+      end =
+        st.start +
+        ((animation.startTime() + animation.duration()) /
+          animation.parent.duration()) *
+          range;
+    return start + (end - start) * p;
+  }
+  return position;
+}
+
 function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
 }
 
 requestAnimationFrame(raf);
+
+const scrollKe = (sectionId) => {
+  // 1. Temukan ScrollTrigger yang terkait dengan sectionId tersebut.
+  const st = ScrollTrigger.getById(sectionId);
+
+  if (st) {
+    // 2. Gunakan lenis.scrollTo untuk menggulir ke posisi start ScrollTrigger.
+    // lenis menangani smooth scrolling, menghilangkan konflik window/GSAP.
+    lenis.scrollTo(st.start, {
+      duration: 1.2, // Atur durasi sesuai kebutuhan
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Contoh easing
+    });
+  } else {
+    // Jika target bukan ScrollTrigger, coba cari elemennya (misal 'references')
+    const targetElement = document.getElementById(sectionId);
+    if (targetElement) {
+      lenis.scrollTo(targetElement, { duration: 1.2 });
+    }
+  }
+};
+
+function shareContent() {
+  // Periksa apakah browser mendukung Web Share API
+  if (navigator.share) {
+    navigator
+      .share({
+        title: document.title, // Judul yang akan dibagikan
+        text: "Find out where the 'Aura Farming' trend comes from!", // Teks deskripsi
+        url: window.location.href, // URL halaman saat ini
+      })
+      .then(() => console.log("Thanks for sharing!"))
+      .catch((error) => console.error("Failed to share:", error));
+  } else {
+    // Fallback jika API tidak didukung (Anda bisa menggunakan metode tradisional di sini)
+    alert(
+      "Web Share API is not supported in this browser.. Try to copy the URL manually!."
+    );
+  }
+}
+
+lenis.stop();
+const loadingScreen = document.getElementById("loader");
+const loadingPa = loadingScreen.querySelectorAll("h1")[0];
+const loadingWe = loadingScreen.querySelectorAll("h1")[1];
+const loadingLur = loadingScreen.querySelectorAll("h1")[2];
+const loadingText = loadingScreen.querySelectorAll("h1")[3];
+gsap.set(loadingPa, { y: "50%" });
+gsap.set(loadingWe, { opacity: 0 });
+gsap.set(loadingLur, { y: "-50%" });
+
+const loaderTextAnim = gsap.fromTo(
+  loadingText,
+  { opacity: "10%" },
+  {
+    opacity: "50%",
+    yoyo: true,
+    duration: 1,
+    repeat: "-1",
+  }
+);
+window.addEventListener("load", function () {
+  // Hide the loading screen
+  gsap
+    .timeline({
+      defaults: {
+        duration: 0.2,
+        ease: "power1.in",
+      },
+    })
+    .to(loadingPa, {
+      y: "0",
+    })
+    .to(
+      loadingLur,
+      {
+        y: "0",
+      },
+      "<"
+    )
+    .to(loadingWe, { opacity: 1 })
+    .call(() => {
+      loaderTextAnim.kill(); // Menghentikan dan menghapus animasi sepenuhnya
+    })
+    .to(
+      loadingScreen,
+      {
+        y: `-${loadingScreen.offsetHeight}px`,
+        duration: 2,
+        ease: "power1.out",
+      },
+      "+=1"
+    )
+    .to(loadingScreen, { display: "none" });
+  lenis.start();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -26,15 +150,15 @@ document.addEventListener("DOMContentLoaded", () => {
     yoyo: true,
     ease: "power1.inOut",
   });
-  console.log([2, 3, 4, 5, 7].length);
+
   if (window.innerWidth > 1280) {
-    gsap
+    const tlNav = gsap
       .timeline({
         defaults: { ease: "power3.inOut", duration: 0.3 },
         scrollTrigger: {
           trigger: "body",
           start: "top+=50 top",
-          toggleActions: "play pause play reverse",
+          toggleActions: "",
         },
       })
       .to(navMenu, {
@@ -57,11 +181,37 @@ document.addEventListener("DOMContentLoaded", () => {
         "-=0.2"
       );
 
-    const pagesCtr = document.querySelector("#pages-ctr");
+    let isHidden = false;
+    window.addEventListener("scroll", (e) => {
+      // Scroll ke bawah (di luar zona 50px)
+      if (window.scrollY > 50) {
+        // Jika belum disembunyikan, jalankan .play() untuk menyembunyikan
+        if (!isHidden) {
+          tlNav.play();
+          isHidden = true;
+        }
+        // Scroll ke atas (kembali ke zona 50px atau kurang)
+      } else {
+        // Jika sedang disembunyikan, jalankan .reverse() untuk memunculkan
+        if (isHidden) {
+          tlNav.reverse();
+          isHidden = false;
+        }
+      }
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    const allCtr = document.querySelector("#all-ctr");
     const sections = gsap.utils.toArray("#all-ctr section");
 
     sections.forEach((section) => {
       const title = section.querySelector(`#${section.id} > h1`);
+
       if (section.id === "pacujalur") {
         const pacu = section.querySelector("#pacu");
         const jalur = section.querySelector("#jalur");
@@ -73,6 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
             end: "+=250%",
             scrub: true,
             pin: true,
+            id: "pacujalur",
           },
         });
 
@@ -84,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
             duration: 0.4,
           })
           .to(jalur, {
-            y: `-${jalur.offsetHeight}px`,
+            y: () => `-${jalur.offsetHeight}px`,
             duration: 1,
             ease: "power2.inOut",
           })
@@ -106,18 +257,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (section.id === "bagian-jalur") {
+        const jalurCtr = section.querySelector("#jalur-ctr");
         const kepala = section.querySelector("#kepala");
         const badan = section.querySelector("#badan");
         const buritan = section.querySelector("#buritan");
-        const rolesCtr = section.querySelectorAll("section .roles-ctr");
 
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "+=700%",
+            end: `+=${jalurCtr.clientHeight}px`,
             scrub: true,
             pin: true,
+            id: "bagianjalur",
           },
           defaults: {
             duration: 0.4,
@@ -143,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "+=0.5"
           )
           .to(badan, {
-            marginTop: `-${badan.offsetHeight}px`,
+            marginTop: () => `-${badan.offsetHeight}px`,
             duration: 1,
             ease: "power2.inOut",
           })
@@ -170,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "+=0.5"
           )
           .to(buritan, {
-            marginTop: `-${buritan.offsetHeight}px`,
+            marginTop: () => `-${buritan.offsetHeight}px`,
             duration: 1,
             ease: "power2.inOut",
           })
@@ -205,6 +357,27 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             "+=0.5"
           );
+      }
+
+      if (section.id === "references") {
+        const refCtr = section.querySelector("#ref-ctr");
+        let tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=100%",
+            scrub: true,
+            pin: true,
+            id: "references",
+          },
+          defaults: {
+            duration: 0.4,
+          },
+        });
+
+        tl.from(title, { autoAlpha: 0, rotate: 20 }).to(refCtr, {
+          x: `-${refCtr.offsetWidth - allCtr.offsetWidth}px`,
+        });
       }
     });
   }

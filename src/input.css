@@ -5,9 +5,23 @@
   --default-font-family: "DM Sans", sans-serif;
   --color-olur: #fb6b3d;
 }
+
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  }
+}
+
 .text-trim {
   text-box: trim-both cap alphabetic;
 }
 .parts-card {
-  @apply w-[400px] h-full p-10 gap-5.5 bg-black/50 rounded-3xl;
+  @apply flex flex-col justify-end w-full h-full px-7 py-6 bg-black/50;
+}
+.parts-c-base {
+  @apply w-[400px] h-[300px] rounded-3xl bg-cover overflow-hidden;
+}
+
+.run-cards {
+  @apply mt-[15vw] bg-olur h-100 w-full px-28 flex;
 }

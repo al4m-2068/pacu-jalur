@@ -29,7 +29,7 @@
 }
 
 .roles-ctr {
-  @apply overflow-y-hidden;
+  @apply overflow-y-visible;
 }
 
 .run-cards {

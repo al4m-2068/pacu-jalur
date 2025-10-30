@@ -5,7 +5,7 @@ const lenis = new Lenis({
   // Value between 0 and 1. Lower value = smoother scroll.
   lerp: 0.05,
   // Multiplier for the mouse wheel. Higher value = faster scrolling.
-  wheelMultiplier: 2,
+  wheelMultiplier: 1,
   // Set to true to enable infinite scrolling.
   infinite: false,
 });
@@ -127,7 +127,7 @@ window.addEventListener("load", function () {
       loadingScreen,
       {
         y: `-${loadingScreen.offsetHeight}px`,
-        duration: 2,
+        duration: 1.5,
         ease: "power1.out",
       },
       "+=1"

@@ -299,9 +299,6 @@
   .my-5 {
     margin-block: calc(var(--spacing) * 5);
   }
-  .-mt-\[1\.5vh\] {
-    margin-top: calc(1.5vh * -1);
-  }
   .mt-7 {
     margin-top: calc(var(--spacing) * 7);
   }
@@ -605,8 +602,11 @@
   .pt-32 {
     padding-top: calc(var(--spacing) * 32);
   }
-  .pt-\[14vh\] {
-    padding-top: 14vh;
+  .pt-\[13\.5vh\] {
+    padding-top: 13.5vh;
+  }
+  .pt-\[13vh\] {
+    padding-top: 13vh;
   }
   .pr-8 {
     padding-right: calc(var(--spacing) * 8);
@@ -1236,7 +1236,7 @@
   }
 }
 .roles-ctr {
-  overflow-y: hidden;
+  overflow-y: visible;
 }
 .run-cards {
   margin-top: 15vw;

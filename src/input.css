@@ -32,5 +32,12 @@
   @apply mt-[15vw] bg-olur h-100 w-full px-28 flex;
 }
 .ref-video {
-  @apply w-[300px] h-full object-cover rounded-3xl;
+  @apply w-auto h-full aspect-[9/16] object-cover rounded-3xl;
+}
+
+.btn-foot {
+  @apply cursor-pointer hover:bg-white hover:text-olur transition-all duration-75 px-5 py-4 border border-solid border-white rounded-full;
+}
+.img-foot {
+  @apply max-sm:hidden opacity-0 hover:opacity-100 absolute w-[200px] aspect-[9/16] object-cover rounded-3xl transition-all duration-100 ease-in;
 }

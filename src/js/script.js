@@ -47,18 +47,14 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 const scrollKe = (sectionId) => {
-  // 1. Temukan ScrollTrigger yang terkait dengan sectionId tersebut.
   const st = ScrollTrigger.getById(sectionId);
 
   if (st) {
-    // 2. Gunakan lenis.scrollTo untuk menggulir ke posisi start ScrollTrigger.
-    // lenis menangani smooth scrolling, menghilangkan konflik window/GSAP.
     lenis.scrollTo(st.start, {
-      duration: 1.2, // Atur durasi sesuai kebutuhan
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Contoh easing
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
   } else {
-    // Jika target bukan ScrollTrigger, coba cari elemennya (misal 'references')
     const targetElement = document.getElementById(sectionId);
     if (targetElement) {
       lenis.scrollTo(targetElement, { duration: 1.2 });
@@ -67,18 +63,17 @@ const scrollKe = (sectionId) => {
 };
 
 function shareContent() {
-  // Periksa apakah browser mendukung Web Share API
+  // Periksa apakah browser mendukung Web Share API?
   if (navigator.share) {
     navigator
       .share({
-        title: document.title, // Judul yang akan dibagikan
-        text: "Find out where the 'Aura Farming' trend comes from!", // Teks deskripsi
-        url: window.location.href, // URL halaman saat ini
+        title: document.title,
+        text: "Find out where the 'Aura Farming' trend comes from!",
+        url: window.location.href,
       })
       .then(() => console.log("Thanks for sharing!"))
       .catch((error) => console.error("Failed to share:", error));
   } else {
-    // Fallback jika API tidak didukung (Anda bisa menggunakan metode tradisional di sini)
     alert(
       "Web Share API is not supported in this browser.. Try to copy the URL manually!."
     );
@@ -106,7 +101,7 @@ const loaderTextAnim = gsap.fromTo(
   }
 );
 window.addEventListener("load", function () {
-  // Hide the loading screen
+  // Hide the loading screen after looooadded
   gsap
     .timeline({
       defaults: {
@@ -126,7 +121,7 @@ window.addEventListener("load", function () {
     )
     .to(loadingWe, { opacity: 1 })
     .call(() => {
-      loaderTextAnim.kill(); // Menghentikan dan menghapus animasi sepenuhnya
+      loaderTextAnim.kill();
     })
     .to(
       loadingScreen,
@@ -183,16 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isHidden = false;
     window.addEventListener("scroll", (e) => {
-      // Scroll ke bawah (di luar zona 50px)
       if (window.scrollY > 50) {
-        // Jika belum disembunyikan, jalankan .play() untuk menyembunyikan
         if (!isHidden) {
           tlNav.play();
           isHidden = true;
         }
-        // Scroll ke atas (kembali ke zona 50px atau kurang)
       } else {
-        // Jika sedang disembunyikan, jalankan .reverse() untuk memunculkan
         if (isHidden) {
           tlNav.reverse();
           isHidden = false;
@@ -266,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: `+=${jalurCtr.clientHeight}px`,
+            end: `+=${jalurCtr.clientHeight + window.innerHeight}px`,
             scrub: true,
             pin: true,
             id: "bagianjalur",
@@ -290,13 +281,13 @@ document.addEventListener("DOMContentLoaded", () => {
             rolesKepala,
             {
               x: `-${rolesKepala.offsetWidth - rolesMctr.offsetWidth}px`,
-              duration: 1,
+              duration: 3,
             },
             "+=0.5"
           )
           .to(badan, {
             marginTop: () => `-${badan.offsetHeight}px`,
-            duration: 1,
+            duration: 3,
             ease: "power2.inOut",
           })
           .to(
@@ -317,13 +308,13 @@ document.addEventListener("DOMContentLoaded", () => {
             rolesBadan,
             {
               x: `-${rolesBadan.offsetWidth - rolesMctr.offsetWidth}px`,
-              duration: 1,
+              duration: 3,
             },
             "+=0.5"
           )
           .to(buritan, {
             marginTop: () => `-${buritan.offsetHeight}px`,
-            duration: 1,
+            duration: 3,
             ease: "power2.inOut",
           })
           .to(
@@ -344,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
             rolesBuritan,
             {
               x: `-${rolesBuritan.offsetWidth - rolesMctr.offsetWidth}px`,
-              duration: 1,
+              duration: 3,
             },
             "+=0.5"
           )
@@ -365,18 +356,19 @@ document.addEventListener("DOMContentLoaded", () => {
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "+=100%",
+            end: "+=200%",
             scrub: true,
             pin: true,
             id: "references",
           },
           defaults: {
-            duration: 0.4,
+            duration: 4,
           },
         });
 
-        tl.from(title, { autoAlpha: 0, rotate: 20 }).to(refCtr, {
+        tl.from(title, { autoAlpha: 0, rotate: 180 }).to(refCtr, {
           x: `-${refCtr.offsetWidth - allCtr.offsetWidth}px`,
+          duration: 3,
         });
       }
     });

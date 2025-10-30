@@ -28,6 +28,10 @@
   @apply w-[400px] max-sm:w-[350px] h-[300px] rounded-3xl bg-cover overflow-hidden;
 }
 
+.roles-ctr {
+  @apply overflow-y-hidden;
+}
+
 .run-cards {
   @apply mt-[15vw] bg-olur h-100 w-full px-28 flex;
 }

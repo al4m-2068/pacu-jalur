@@ -45,6 +45,7 @@
       alt=""
       class="fixed bottom-2 right-2 aspect-square w-[12vh] z-[998] rotate-90"
     />
+    <!-- Desktop Header -->
     <header
       class="max-sm:hidden z-[997] flex justify-center w-full fixed top-0 left-0"
     >
@@ -58,15 +59,31 @@
           <ul
             class="flex pt-10 pb-6.5 px-9 bg-olur rounded-b-3xl justify-center items-center uppercase gap-7.5 text-sm font-semibold tracking-wide"
           >
-            <li><a onclick="scrollKe('pacujalur')">Meaning</a></li>
-            <li><a onclick="scrollKe('bagianjalur')">Jalur Parts</a></li>
-            <li><a>Rules and Rundown</a></li>
-            <li><a onclick="scrollKe('references')">More Reference</a></li>
+            <li>
+              <a class="cursor-pointer" onclick="scrollKe('pacujalur')"
+                >Meaning</a
+              >
+            </li>
+            <li>
+              <a class="cursor-pointer" onclick="scrollKe('bagianjalur')"
+                >Jalur Parts</a
+              >
+            </li>
+            <li><a class="cursor-pointer">Rules and Rundown</a></li>
+            <li>
+              <a class="cursor-pointer" onclick="scrollKe('references')"
+                >More Reference</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
     </header>
+
+    <!-- All Sections Container -->
     <div id="all-ctr" class="max-w-[1440px] bg-[beige] z-20 w-full">
+      <!-- SECTION: HOME -->
+      <span id="homepoint"></span>
       <section
         id="home"
         class="sticky top-0 bg-[url('/src/img/pacuperson.png')] z-1 bg-cover max-sm:bg-position-[25%_0] bg-center w-full h-screen"
@@ -117,12 +134,13 @@
           </h1>
           <button
             id="explore-btn"
-            class="font-semibold text-xl uppercase inline-block px-7 py-4 border border-white rounded-full mt-7 max-sm:bg-white/10 max-sm:backdrop-blur-sm w-max"
+            class="hover:bg-olur cursor-pointer font-semibold text-xl uppercase inline-block px-7 py-4 border border-white rounded-full mt-7 max-sm:bg-white/10 max-sm:backdrop-blur-sm w-max"
           >
             Scroll ↓
           </button>
         </div>
       </section>
+      <!-- Explanations Container -->
       <div id="pages-ctr" class="relative z-2 w-full">
         <!-- PACU & JALUR -->
         <section
@@ -227,9 +245,7 @@
                     <b>water-splitter</b> (like common boats do).
                   </p>
                 </div>
-                <div
-                  class="animatee roles-m-ctr w-full h-[350px] mb-14 border-y border-solid border-olur overflow-x-hidden max-sm:overflow-x-auto"
-                >
+                <div class="animatee roles-m-ctr">
                   <div
                     class="roles-ctr relative h-full gap-8 flex max-sm:px-8 px-28 items-center text-white w-max"
                   >
@@ -239,7 +255,7 @@
                       >
                         Roles in<br />this part
                         <span
-                          class="block uppercase text-3xl mt-7 text-black/60"
+                          class="hidden max-sm:block uppercase text-3xl mt-7 text-black/60"
                           >← Scroll</span
                         >
                       </h1>
@@ -305,9 +321,7 @@
                     trunk, often reaching 25–35 meters in length.
                   </p>
                 </div>
-                <div
-                  class="animatee roles-m-ctr w-full h-[350px] mb-14 border-y border-solid border-olur overflow-x-hidden max-sm:overflow-x-auto"
-                >
+                <div class="animatee roles-m-ctr">
                   <div
                     class="roles-ctr relative h-full gap-8 flex max-sm:px-8 px-28 items-center text-white w-max"
                   >
@@ -317,7 +331,7 @@
                       >
                         Roles in<br />this part
                         <span
-                          class="block uppercase text-3xl mt-7 text-black/60"
+                          class="hidden max-sm:block uppercase text-3xl mt-7 text-black/60"
                           >← Scroll</span
                         >
                       </h1>
@@ -369,9 +383,7 @@
                     and philosophy.
                   </p>
                 </div>
-                <div
-                  class="animatee w-full h-[350px] mb-14 border-y border-solid border-olur py-6 overflow-x-hidden max-sm:overflow-x-auto"
-                >
+                <div class="animatee roles-m-ctr">
                   <div
                     class="roles-ctr relative h-full gap-8 flex px-28 max-sm:px-8 items-center text-white w-max"
                   >
@@ -381,7 +393,7 @@
                       >
                         Roles in<br />this part
                         <span
-                          class="block uppercase text-3xl mt-7 text-black/60"
+                          class="hidden max-sm:block uppercase text-3xl mt-7 text-black/60"
                           >← Scroll</span
                         >
                       </h1>
@@ -418,7 +430,7 @@
                 <img
                   src="src/img/jalur-ekor-up.jpg"
                   alt=""
-                  class="max-sm:border-0 max-sm:aspect-square border-t-8 border-solid max-sm:rounded-none max-sm:order-1 border-[beige] w-full max-sm:h-full h-1/2 object-cover rounded-br-4xl"
+                  class="max-sm:border-0 max-sm:aspect-square border-t-8 border-solid max-sm:rounded-none max-sm:order-1 border-[beige] w-full max-sm:h-full h-1/2 object-cover object-bottom rounded-br-4xl"
                 />
               </div>
             </div>
@@ -442,7 +454,9 @@
             id="title"
             class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[200px] max-sm:text-8xl font-bold text-center text-brolur leading-[90%]"
           >
-            More<br />About<br />Jalur
+            <div>More</div>
+            <div>About</div>
+            <div>Jalur</div>
             <span
               class="hidden max-sm:block uppercase text-3xl mt-7 text-brolur/60"
               >← Scroll</span
@@ -495,12 +509,12 @@
         </section>
         <!-- FOOTER -->
         <footer
-          class="h-screen bg-olur flex flex-col items-center relative justify-center gap-5 py-8"
+          class="h-screen bg-brolur flex flex-col items-center relative justify-center gap-5 py-8"
         >
           <img
             src="src/img/bagian-jalang.jpg"
             alt="Jalang"
-            class="img-foot top-20 left-20"
+            class="img-foot top-20 left-60"
           />
           <img
             src="src/img/bagian-concang.png"
@@ -510,7 +524,7 @@
           <img
             src="src/img/jalur-tari.jpg"
             alt="Jalang"
-            class="img-foot object-left bottom-30 left-40"
+            class="img-foot object-left bottom-30 left-70"
           />
           <h1
             class="font-bold max-sm:text-2xl text-5xl flex flex-col text-center max-sm:w-[60%]"
@@ -518,7 +532,7 @@
             Now you know the real origin of
           </h1>
           <span
-            class="text-white font-bold text-8xl max-sm:text-5xl [text-shadow:_0_0_30px_#fb6b3d,_0_0_20px_white] max-sm:[text-shadow:_0_0_10px_#fb6b3d,_0_0_10px_white]"
+            class="text-olur font-bold text-9xl max-sm:text-5xl max-sm:[text-shadow:_0_0_10px_#fb6b3d,_0_0_10px_white]"
             >Pacu Jalur</span
           >
           <h1
@@ -544,10 +558,13 @@
               >Find out more about Indonesian Cultures</a
             >
           </div>
+          <button class="btn-foot-top" onclick="scrollKe('homepoint')">
+            Back to Top ↑
+          </button>
           <h1 class="">
             from
             <div
-              class="inline-block font-bold hover:text-brolur hover:scale-110 hover:rotate-3 transition-all duration-100"
+              class="inline-block font-bold hover:text-olur hover:scale-110 hover:rotate-3 transition-all duration-100"
             >
               <a href="https://www.youtube.com/channel/UCxRWBWt_SjUShAsQuiM2MoA"
                 >TheRajulain</a

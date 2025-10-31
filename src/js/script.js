@@ -1,43 +1,15 @@
 let gtk = document.querySelector("header > div > h1");
 let navMenu = document.querySelector("header > div > nav");
+gsap.registerPlugin(ScrollTrigger);
 
 const lenis = new Lenis({
   // Value between 0 and 1. Lower value = smoother scroll.
-  lerp: 0.05,
+  lerp: 0.06,
   // Multiplier for the mouse wheel. Higher value = faster scrolling.
   wheelMultiplier: 1,
   // Set to true to enable infinite scrolling.
   infinite: false,
 });
-
-// From the GSAP Forum
-
-function getScrollPosition(animation, progress) {
-  let p = gsap.utils.clamp(0, 1, progress || 0),
-    nested = !animation.scrollTrigger,
-    st = nested ? animation.parent.scrollTrigger : animation.scrollTrigger,
-    containerAnimation = st.vars.containerAnimation,
-    range = st.end - st.start,
-    position = st.start + range * p;
-  if (containerAnimation) {
-    st = containerAnimation.scrollTrigger;
-    return (
-      st.start +
-      (st.end - st.start) * (position / containerAnimation.duration())
-    );
-  } else if (nested) {
-    let start =
-        st.start +
-        (animation.startTime() / animation.parent.duration()) * range,
-      end =
-        st.start +
-        ((animation.startTime() + animation.duration()) /
-          animation.parent.duration()) *
-          range;
-    return start + (end - start) * p;
-  }
-  return position;
-}
 
 function raf(time) {
   lenis.raf(time);
@@ -137,19 +109,21 @@ window.addEventListener("load", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.to("#explore-btn", {
+  const explrBtn = document.getElementById("explore-btn");
+  const exploreScroll = gsap.to(explrBtn, {
     y: "20px",
     duration: 0.8,
     repeat: "-1",
     yoyo: true,
     ease: "power1.inOut",
   });
+  explrBtn.addEventListener("mouseenter", () => exploreScroll.pause());
+  explrBtn.addEventListener("mouseleave", () => exploreScroll.play());
 
   if (window.innerWidth > 1280) {
     const tlNav = gsap
       .timeline({
-        defaults: { ease: "power3.inOut", duration: 0.3 },
+        defaults: { ease: "power3.inOut", duration: 0.4 },
         scrollTrigger: {
           trigger: "body",
           start: "top+=50 top",
@@ -157,24 +131,20 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       })
       .to(navMenu, {
-        x: "-50%",
+        y: "-80%",
       })
       .to(
         gtk,
         {
           y: "-250%",
-          duration: 0.4,
           ease: "power2.out",
         },
         "-=0.35"
       )
-      .to(
-        navMenu,
-        {
-          y: "-80%",
-        },
-        "-=0.2"
-      );
+      .to(navMenu, {
+        x: "-50%",
+        duration: 0.2,
+      });
 
     let isHidden = false;
     window.addEventListener("scroll", (e) => {
@@ -190,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-
+    // from Forum
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
@@ -352,11 +322,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (section.id === "references") {
         const refCtr = section.querySelector("#ref-ctr");
+        const titleTexts = title.querySelectorAll("div");
+
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "+=200%",
+            end: "+=150%",
             scrub: true,
             pin: true,
             id: "references",
@@ -366,10 +338,32 @@ document.addEventListener("DOMContentLoaded", () => {
           },
         });
 
-        tl.from(title, { autoAlpha: 0, rotate: 180 }).to(refCtr, {
-          x: `-${refCtr.offsetWidth - allCtr.offsetWidth}px`,
-          duration: 3,
-        });
+        tl.from(title, { autoAlpha: 0, rotate: 180 })
+          .from(
+            [titleTexts[0], titleTexts[2]],
+            {
+              x: "-200%",
+            },
+            "<"
+          )
+          .from(
+            titleTexts[1],
+            {
+              x: "200%",
+            },
+            "<"
+          )
+          .to(refCtr, {
+            x: `-${refCtr.offsetWidth - allCtr.offsetWidth}px`,
+            duration: 3,
+          })
+          .to(
+            titleTexts[1],
+            {
+              x: "-50%",
+            },
+            "<"
+          );
       }
     });
   }

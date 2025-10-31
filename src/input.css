@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
 
 @theme {
   --default-font-family: "DM Sans", sans-serif;
@@ -11,6 +12,10 @@
   .text-stroke {
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
   }
+}
+
+.corners {
+  @apply fixed aspect-square w-[12vh] z-[998];
 }
 
 .text-trim {
